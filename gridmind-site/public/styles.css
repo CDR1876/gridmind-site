@@ -127,6 +127,71 @@ a{color:inherit; text-decoration:none}
     color-mix(in oklab, var(--red), transparent 90%));
 }
 
+/* Make sure nav-inner can position the dropdown */
+.nav-inner{
+  position: relative;
+}
+
+/* Hamburger button (hidden on desktop) */
+.nav-toggle{
+  display: none;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(0,0,0,0.25);
+  border-radius: 12px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.nav-toggle span{
+  display: block;
+  height: 2px;
+  margin: 6px 0;
+  background: rgba(255,255,255,0.9);
+  border-radius: 2px;
+}
+
+/* Mobile behavior */
+@media (max-width: 700px){
+  .nav-toggle{
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    margin-left: auto;
+  }
+
+  /* Hide the links until opened */
+  .nav-links{
+    display: none;
+    position: absolute;
+    right: 0;
+    top: calc(100% + 10px);
+    width: min(260px, 90vw);
+    padding: 12px;
+    gap: 10px;
+    flex-direction: column;
+    background: rgba(0,0,0,0.75);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+    z-index: 50;
+  }
+
+  /* Show menu when open */
+  .nav-links.is-open{
+    display: flex;
+  }
+
+  /* Make pills fill width nicely in the dropdown */
+  .nav-links .pill{
+    width: 100%;
+    text-align: center;
+  }
+}
+
+
 /* HERO */
 .hero{
   position:relative;
