@@ -282,4 +282,21 @@ small{color:var(--muted); font-family:var(--font-ui); font-size:var(--size-ui); 
   vertical-align: middle;
 }
 
+.nav-links{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+@media (max-width: 520px){
+  .nav-links{
+    justify-content: center;
+  }
+  .nav-links .pill{
+    padding: 8px 10px;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+}
 
