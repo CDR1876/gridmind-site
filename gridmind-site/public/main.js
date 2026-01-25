@@ -17,68 +17,41 @@
   });
 })();
 
-// Mobile nav toggle (hamburger)
-(() => {
-  const toggle = document.querySelector(".nav-toggle");
-  const nav = document.querySelector("#site-nav");
-
-  if (!toggle || !nav) return;
-
-  const openMenu = () =>
-
-
 document.addEventListener("DOMContentLoaded", () => {
   const toggle = document.querySelector(".nav-toggle");
   const nav = document.querySelector("#site-nav");
   if (!toggle || !nav) return;
 
-  const isOpen = () => nav.classList.contains("is-open");
+  const isOpen = () => toggle.getAttribute("aria-expanded") === "true";
+  const setOpen = (open) => toggle.setAttribute("aria-expanded", open ? "true" : "false");
 
-  const openMenu = () => {
-    nav.classList.add("is-open");
-    toggle.setAttribute("aria-expanded", "true");
-  };
+  // Always start closed
+  setOpen(false);
 
-  const closeMenu = () => {
-    nav.classList.remove("is-open");
-    toggle.setAttribute("aria-expanded", "false");
-  };
-
-  const toggleMenu = () => {
-    isOpen() ? closeMenu() : openMenu();
-  };
-
-  // Use pointerup so it works reliably across mouse + touch
-  toggle.addEventListener("pointerup", (e) => {
+  toggle.addEventListener("click", (e) => {
     e.preventDefault();
     e.stopPropagation();
-    toggleMenu();
+    setOpen(!isOpen());
   });
 
-  // Close when tapping a link
+  // Close when clicking a link
   nav.querySelectorAll("a").forEach((a) => {
-    a.addEventListener("click", () => closeMenu());
-    a.addEventListener("pointerup", () => closeMenu());
+    a.addEventListener("click", () => setOpen(false));
   });
 
   // Close when clicking outside
-  document.addEventListener("pointerup", (e) => {
+  document.addEventListener("click", (e) => {
     const t = e.target;
-    if (!nav.contains(t) && !toggle.contains(t)) closeMenu();
+    if (!nav.contains(t) && !toggle.contains(t)) setOpen(false);
   });
 
-  // Close on scroll so it doesn't ride over the page
+  // Optional: close on scroll so it never overlays while you browse
   window.addEventListener("scroll", () => {
-    if (isOpen()) closeMenu();
+    if (isOpen()) setOpen(false);
   }, { passive: true });
 
-  // Close on Escape
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeMenu();
-  });
-
-  // Close if resized back to desktop
+  // Close on resize back to desktop
   window.addEventListener("resize", () => {
-    if (window.innerWidth > 700) closeMenu();
+    if (window.innerWidth > 700) setOpen(false);
   });
 });
