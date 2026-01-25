@@ -156,7 +156,7 @@ a{color:inherit; text-decoration:none}
   font-weight:900;
   letter-spacing:.06em;
   text-transform:uppercase;
-   text-color: white;
+   color: white;
 }
 .cta:hover{filter:brightness(1.06)}
 .cta.red{
