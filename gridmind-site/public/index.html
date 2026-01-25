@@ -131,10 +131,40 @@
           <p class="bright">We work from anywhere.</p>
           <p><a class="cta red" href="mailto:hello@gridmind.studio">hello@gridmind.studio</a></p>
         </div>
+        
         <div class="panel">
-          <p><a class="link" href="legal/">Legal</a></p>
-          <p><a class="link" href="feedback/">Feedback</a></p>
-        </div>
+  <h3 class="panel-title">Send a message</h3>
+
+  <form class="contact-form"
+        action="mailto:hello@gridmind.studio"
+        method="post"
+        enctype="text/plain">
+
+    <label class="field">
+      <span>Name</span>
+      <input name="name" type="text" autocomplete="name" required />
+    </label>
+
+    <label class="field">
+      <span>Email</span>
+      <input name="email" type="email" autocomplete="email" required />
+    </label>
+
+    <label class="field">
+      <span>Message</span>
+      <textarea name="message" rows="4" required></textarea>
+    </label>
+
+    <button class="cta" type="submit">Send</button>
+    <p class="fineprint">This will open your email app to send the message.</p>
+  </form>
+
+  <div class="panel-links">
+    <a class="link" href="legal/">Legal</a>
+    <a class="link" href="feedback/">Feedback</a>
+  </div>
+</div>
+
       </div>
     </section>
 
