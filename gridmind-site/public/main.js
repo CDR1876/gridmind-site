@@ -1,8 +1,9 @@
-(function () {
+document.addEventListener("DOMContentLoaded", () => {
+  // Year
   const y = document.querySelector("[data-year]");
   if (y) y.textContent = new Date().getFullYear();
 
-  // Smooth scroll for anchors
+  // Smooth scroll
   document.querySelectorAll("a[data-scroll]").forEach((a) => {
     a.addEventListener("click", (e) => {
       const href = a.getAttribute("href") || "";
@@ -15,9 +16,8 @@
       }
     });
   });
-})();
 
-document.addEventListener("DOMContentLoaded", () => {
+  // Hamburger menu
   const toggle = document.querySelector(".nav-toggle");
   const nav = document.querySelector("#site-nav");
   if (!toggle || !nav) return;
@@ -25,7 +25,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const isOpen = () => toggle.getAttribute("aria-expanded") === "true";
   const setOpen = (open) => toggle.setAttribute("aria-expanded", open ? "true" : "false");
 
-  // Always start closed
   setOpen(false);
 
   toggle.addEventListener("click", (e) => {
@@ -34,23 +33,15 @@ document.addEventListener("DOMContentLoaded", () => {
     setOpen(!isOpen());
   });
 
-  // Close when clicking a link
   nav.querySelectorAll("a").forEach((a) => {
     a.addEventListener("click", () => setOpen(false));
   });
 
-  // Close when clicking outside
   document.addEventListener("click", (e) => {
     const t = e.target;
     if (!nav.contains(t) && !toggle.contains(t)) setOpen(false);
   });
 
-  // Optional: close on scroll so it never overlays while you browse
-  window.addEventListener("scroll", () => {
-    if (isOpen()) setOpen(false);
-  }, { passive: true });
-
-  // Close on resize back to desktop
   window.addEventListener("resize", () => {
     if (window.innerWidth > 700) setOpen(false);
   });
