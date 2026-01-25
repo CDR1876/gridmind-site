@@ -80,6 +80,10 @@ a{color:inherit; text-decoration:none}
 .container{width:min(var(--max), calc(100% - 2rem)); margin:0 auto}
 
 /* NAV */
+.nav-toggle{
+  position: relative;
+  z-index: 200;
+}
 .nav{
   position:sticky; top:0; z-index:50;
   background: linear-gradient(180deg, rgba(8,10,14,.92), rgba(8,10,14,.62));
